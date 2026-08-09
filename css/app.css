@@ -1015,3 +1015,221 @@ img { max-width: 100%; display: block; }
   .why-portrait { min-height: 300px; }
 }
  
+/* ============================================
+   Contact
+   ============================================ */
+.contact {
+  padding: 7rem 2rem 7.5rem;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+}
+ 
+.contact-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+ 
+.contact-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.1rem;
+}
+ 
+.contact-sub {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0 0 2.4rem;
+}
+ 
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2.2rem;
+}
+ 
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.contact-method:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -18px rgba(28, 20, 23, 0.3);
+  border-color: transparent;
+}
+ 
+.contact-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--pink-pale);
+  color: var(--pink-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.contact-method strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.contact-method em {
+  display: block;
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 0.15rem;
+}
+ 
+.contact-socials {
+  display: flex;
+  gap: 0.7rem;
+}
+ 
+.social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.social-icon:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+ 
+/* ---- Form ---- */
+.contact-form {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2.6rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+ 
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+ 
+.form-row label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+ 
+.form-row input,
+.form-row textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--ink);
+  resize: vertical;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.form-row input::placeholder,
+.form-row textarea::placeholder { color: rgba(107, 90, 95, 0.55); }
+ 
+.form-row input:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+  background: var(--white);
+}
+ 
+.form-submit {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  border: none;
+}
+ 
+.form-status {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  min-height: 1.2em;
+}
+.form-status.success { color: #2f7a4f; }
+.form-status.error { color: var(--pink-deep); }
+ 
+@media (max-width: 980px) {
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+}
+ 
+@media (max-width: 620px) {
+  .contact { padding: 4.5rem 1.3rem 5rem; }
+  .contact-form { padding: 1.8rem; }
+}
+ 
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  padding: 2.2rem 2rem;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+ 
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+ 
+.footer-copy,
+.footer-tagline {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+ 
+.footer-socials {
+  display: flex;
+  gap: 0.6rem;
+}
+.footer-socials .social-icon {
+  width: 36px;
+  height: 36px;
+}
+ 
+@media (max-width: 700px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.1rem;
+  }
+  .footer-tagline { order: 3; }
+}
