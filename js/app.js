@@ -102,6 +102,78 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && workModal.classList.contains('open')) closeWorkModal();
 });
 
+// AI Photoshoot lightbox
+const shootPhotos = [
+  { src: 'media/photoshot/wbs-1.jpg', title: 'Women Business Summit', tag: 'Event & PR Coverage', desc: 'On-stage panel moment, mic in hand.' },
+  { src: 'media/photoshot/wbs-2.jpg', title: 'Women Business Summit', tag: 'Event & PR Coverage', desc: 'Mid-conversation during a panel discussion.' },
+  { src: 'media/photoshot/wbs-3.jpg', title: 'Women Business Summit', tag: 'Event & PR Coverage', desc: 'Candid networking moment at the reception.' },
+  { src: 'media/photoshot/wbs-4.jpg', title: 'Women Business Summit', tag: 'Event & PR Coverage', desc: 'Group photo alongside fellow summit attendees.' },
+  { src: 'media/photoshot/zr-1.jpg', title: 'Zipp Republic Campaign', tag: 'Streetwear Brand Content', desc: 'Moody close-up in branded cap and jersey.' },
+  { src: 'media/photoshot/zr-2.jpg', title: 'Zipp Republic Campaign', tag: 'Streetwear Brand Content', desc: 'Dynamic action pose tossing the branded cap.' },
+  { src: 'media/photoshot/zr-3.jpg', title: 'Zipp Republic Campaign', tag: 'Streetwear Brand Content', desc: 'Seated studio shot in full jersey fit.' },
+  { src: 'media/photoshot/zr-4.jpg', title: 'Zipp Republic Campaign', tag: 'Streetwear Brand Content', desc: 'Seated studio shot, same fit, cap added.' },
+  { src: 'media/photoshot/zr-5.jpg', title: 'Zipp Republic Campaign', tag: 'Streetwear Brand Content', desc: 'Second action pose for social cutdowns.' },
+  { src: 'media/photoshot/studio-1.jpg', title: 'Studio Portrait Series', tag: 'Editorial & Fashion', desc: 'Close-up portrait in a pink tweed suit.' },
+  { src: 'media/photoshot/studio-2.jpg', title: 'Studio Portrait Series', tag: 'Editorial & Fashion', desc: 'Candid laugh, same set and wardrobe.' },
+  { src: 'media/photoshot/studio-3.jpg', title: 'Studio Portrait Series', tag: 'Editorial & Fashion', desc: 'Full-body studio shot, consistent lighting.' },
+  { src: 'media/photoshot/studio-4.jpg', title: 'Studio Portrait Series', tag: 'Editorial & Fashion', desc: 'Half-body confident pose to close the set.' },
+];
+
+const shootLightbox = document.getElementById('shootLightbox');
+const shootLightboxBackdrop = document.getElementById('shootLightboxBackdrop');
+const shootLightboxClose = document.getElementById('shootLightboxClose');
+const shootLightboxPrev = document.getElementById('shootLightboxPrev');
+const shootLightboxNext = document.getElementById('shootLightboxNext');
+const shootLightboxImg = document.getElementById('shootLightboxImg');
+const shootLightboxTitle = document.getElementById('shootLightboxTitle');
+const shootLightboxTag = document.getElementById('shootLightboxTag');
+const shootLightboxCount = document.getElementById('shootLightboxCount');
+
+let currentShootIndex = 0;
+
+function renderShoot(index) {
+  const total = shootPhotos.length;
+  currentShootIndex = (index + total) % total;
+  const photo = shootPhotos[currentShootIndex];
+
+  shootLightboxImg.src = photo.src;
+  shootLightboxImg.alt = photo.desc || photo.title;
+  shootLightboxTitle.textContent = photo.title;
+  shootLightboxTag.textContent = photo.tag;
+  shootLightboxCount.textContent = `${photo.desc} · ${currentShootIndex + 1} / ${total}`;
+}
+
+function openShootLightbox(index) {
+  renderShoot(index);
+  shootLightbox.classList.add('open');
+  shootLightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeShootLightbox() {
+  shootLightbox.classList.remove('open');
+  shootLightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.shoot-thumb').forEach(btn => {
+  btn.addEventListener('click', () => {
+    openShootLightbox(parseInt(btn.dataset.index, 10) || 0);
+  });
+});
+
+if (shootLightboxPrev) shootLightboxPrev.addEventListener('click', () => renderShoot(currentShootIndex - 1));
+if (shootLightboxNext) shootLightboxNext.addEventListener('click', () => renderShoot(currentShootIndex + 1));
+if (shootLightboxBackdrop) shootLightboxBackdrop.addEventListener('click', closeShootLightbox);
+if (shootLightboxClose) shootLightboxClose.addEventListener('click', closeShootLightbox);
+
+document.addEventListener('keydown', (e) => {
+  if (!shootLightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeShootLightbox();
+  if (e.key === 'ArrowRight') renderShoot(currentShootIndex + 1);
+  if (e.key === 'ArrowLeft') renderShoot(currentShootIndex - 1);
+});
+
 // Services — swap active row + sticky preview panel
 const serviceRows = document.querySelectorAll('.service-row');
 const previewFrame = document.getElementById('previewFrame');
